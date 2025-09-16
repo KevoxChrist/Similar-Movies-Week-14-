@@ -2,8 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const request = require("postman-request");
 const path = require("path");
-const serverless = require("serverless-http");
-
 
 
 
@@ -11,7 +9,6 @@ const app = express();
 const apiKey = process.env.TMDB_API_KEY;
 const PORT = 3000;
 
-console.log(apiKey);
 
 
 app.use(express.static(path.join(__dirname, "../../client")))
@@ -19,7 +16,6 @@ app.use(express.static(path.join(__dirname, "../../client")))
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/index.html"));
 });
-
 
 
 // Search route
@@ -46,16 +42,9 @@ app.get("/similar", (req, res) => {
 
 
 
-
-
-
-module.exports = app;
-module.exports.handler = serverless(app);
-
-
-// app.listen(PORT, () => {
-//   console.log(`Server running on http://localhost:${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
 
 

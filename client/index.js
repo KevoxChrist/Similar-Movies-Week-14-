@@ -3,18 +3,12 @@ const input = document.getElementById("search-input");
 const resultsDiv = document.getElementById("results");
 const similarBtn = document.querySelectorAll(".similar-btn")
 
-const API_BASE =
-  window.location.hostname === "localhost"
-    ? "http://localhost:3000"
-    : "https://backend-sim-movie2.vercel.app";
-
-
 
 form.addEventListener("input", async (e) => {
   e.preventDefault(); // stop page reload
   const query = input.value;
 
- const response = await fetch(`${API_BASE}/search?query=${encodeURIComponent(query)}`);
+ const response = await fetch(`/search?query=${encodeURIComponent(query)}`);
 const data = await response.json();
 
 
@@ -58,7 +52,7 @@ resultsDiv.addEventListener("click", async (e) => {
 
     console.log("Movie ID:", movieId);
 
-   const response = await fetch(`${API_BASE}/similar?movie_id=${movieId}`);
+   const response = await fetch(`/similar?movie_id=${movieId}`);
    const data = await response.json();
 
     
